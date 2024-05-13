@@ -51,11 +51,11 @@ const app = express()
 // PORT
 const PORT = env.port || 8080
 
-// DATABASE MONGOOSE
-mongoose
-  .connect(env.mongoURI, { dbName: 'Utilisateur' })
-  .then(() => console.log("Connexion à Mongoose réussie !"))
-  .catch(error => console.log(error))
+// DATABASE MONGOOSE // SQL 
+// mongoose
+//   .connect(env.mongoURI, { dbName: 'Utilisateur' })
+//   .then(() => console.log("Connexion à Mongoose réussie !"))
+//   .catch(error => console.log(error))
 
 // MIDDLEWARE
 app.use(express.json())
