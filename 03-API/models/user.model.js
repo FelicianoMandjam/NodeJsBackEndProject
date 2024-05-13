@@ -1,17 +1,31 @@
-import mongoose from "mongoose";
-import mongooseUniqueValidator from "mongoose-unique-validator";
+// Je recup ma connexion dans la variable sequalize
+import { Timestamp } from "mongodb"
 
-const userSchema = mongoose.Schema(
-    {
-        firsname:{type : String , require : true},
-        picture: {type : String , require : true},
-        email: {type : String , require : true},
-        password: {type : String , require : true}
-    },
-    {timestamps: {createdAt: true}}
-)
+// et mes types de champs SQL dans DataTypes
+export default (sequelize , DataTypes) =>{
 
+    const User = sequelize.define(
+      'User',
+      {
+        // Model attributes are defined here
+        firstName: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        email: {
+          type: DataTypes.STRING,
+          allowNull : false,
+          unique : true
+          // allowNull defaults to true
+        },
+        password: {
+          type: DataTypes.STRING,
+          allowNull : false
+        },
+      },
+      {
+         timestamp: true 
+      },
+    );
+}
 
-userSchema.plugin(mongooseUniqueValidator);
-
-export default mongoose.model('User' , userSchema)
